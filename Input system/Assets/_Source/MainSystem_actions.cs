@@ -403,6 +403,98 @@ public partial class @MainSystem_actions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 }
             ]
+        },
+        {
+            ""name"": ""CameraMove"",
+            ""id"": ""e6fb49a3-ea39-42d8-b793-85430ea9f062"",
+            ""actions"": [
+                {
+                    ""name"": ""Look"",
+                    ""type"": ""Value"",
+                    ""id"": ""45345d79-e687-4253-be5d-097d0463abb3"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Zoom"",
+                    ""type"": ""Value"",
+                    ""id"": ""827d22c0-fd7c-4f6a-a965-b16cae23f475"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""2667bcf6-f6a7-47bf-b585-a6cb909bba4f"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Look"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""294e4e67-78c2-4224-9c4c-74cda9a31639"",
+                    ""path"": ""<Mouse>/delta/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Mouse&Keyboard"",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""4ca4cc2b-791b-4e89-8e4d-b3a632f16500"",
+                    ""path"": ""<Mouse>/delta/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Mouse&Keyboard"",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""0bd2940a-42d5-4f8d-85a9-1611d7c18a78"",
+                    ""path"": ""<Mouse>/delta/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Mouse&Keyboard"",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""d491662d-3ffc-49c0-96a3-ebd48c47b261"",
+                    ""path"": ""<Mouse>/delta/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Mouse&Keyboard"",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""be7963e3-baf1-4e23-ba16-16a7df906bad"",
+                    ""path"": ""<Mouse>/scroll/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Zoom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -426,12 +518,17 @@ public partial class @MainSystem_actions: IInputActionCollection2, IDisposable
         m_Sub = asset.FindActionMap("Sub", throwIfNotFound: true);
         m_Sub_Jump = m_Sub.FindAction("Jump", throwIfNotFound: true);
         m_Sub_Move = m_Sub.FindAction("Move", throwIfNotFound: true);
+        // CameraMove
+        m_CameraMove = asset.FindActionMap("CameraMove", throwIfNotFound: true);
+        m_CameraMove_Look = m_CameraMove.FindAction("Look", throwIfNotFound: true);
+        m_CameraMove_Zoom = m_CameraMove.FindAction("Zoom", throwIfNotFound: true);
     }
 
     ~@MainSystem_actions()
     {
         UnityEngine.Debug.Assert(!m_Main.enabled, "This will cause a leak and performance issues, MainSystem_actions.Main.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_Sub.enabled, "This will cause a leak and performance issues, MainSystem_actions.Sub.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_CameraMove.enabled, "This will cause a leak and performance issues, MainSystem_actions.CameraMove.Disable() has not been called.");
     }
 
     /// <summary>
@@ -717,6 +814,113 @@ public partial class @MainSystem_actions: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="SubActions" /> instance referencing this action map.
     /// </summary>
     public SubActions @Sub => new SubActions(this);
+
+    // CameraMove
+    private readonly InputActionMap m_CameraMove;
+    private List<ICameraMoveActions> m_CameraMoveActionsCallbackInterfaces = new List<ICameraMoveActions>();
+    private readonly InputAction m_CameraMove_Look;
+    private readonly InputAction m_CameraMove_Zoom;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "CameraMove".
+    /// </summary>
+    public struct CameraMoveActions
+    {
+        private @MainSystem_actions m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public CameraMoveActions(@MainSystem_actions wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "CameraMove/Look".
+        /// </summary>
+        public InputAction @Look => m_Wrapper.m_CameraMove_Look;
+        /// <summary>
+        /// Provides access to the underlying input action "CameraMove/Zoom".
+        /// </summary>
+        public InputAction @Zoom => m_Wrapper.m_CameraMove_Zoom;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_CameraMove; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="CameraMoveActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(CameraMoveActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="CameraMoveActions" />
+        public void AddCallbacks(ICameraMoveActions instance)
+        {
+            if (instance == null || m_Wrapper.m_CameraMoveActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_CameraMoveActionsCallbackInterfaces.Add(instance);
+            @Look.started += instance.OnLook;
+            @Look.performed += instance.OnLook;
+            @Look.canceled += instance.OnLook;
+            @Zoom.started += instance.OnZoom;
+            @Zoom.performed += instance.OnZoom;
+            @Zoom.canceled += instance.OnZoom;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="CameraMoveActions" />
+        private void UnregisterCallbacks(ICameraMoveActions instance)
+        {
+            @Look.started -= instance.OnLook;
+            @Look.performed -= instance.OnLook;
+            @Look.canceled -= instance.OnLook;
+            @Zoom.started -= instance.OnZoom;
+            @Zoom.performed -= instance.OnZoom;
+            @Zoom.canceled -= instance.OnZoom;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="CameraMoveActions.UnregisterCallbacks(ICameraMoveActions)" />.
+        /// </summary>
+        /// <seealso cref="CameraMoveActions.UnregisterCallbacks(ICameraMoveActions)" />
+        public void RemoveCallbacks(ICameraMoveActions instance)
+        {
+            if (m_Wrapper.m_CameraMoveActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="CameraMoveActions.AddCallbacks(ICameraMoveActions)" />
+        /// <seealso cref="CameraMoveActions.RemoveCallbacks(ICameraMoveActions)" />
+        /// <seealso cref="CameraMoveActions.UnregisterCallbacks(ICameraMoveActions)" />
+        public void SetCallbacks(ICameraMoveActions instance)
+        {
+            foreach (var item in m_Wrapper.m_CameraMoveActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_CameraMoveActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="CameraMoveActions" /> instance referencing this action map.
+    /// </summary>
+    public CameraMoveActions @CameraMove => new CameraMoveActions(this);
     private int m_MouseKeyboardSchemeIndex = -1;
     /// <summary>
     /// Provides access to the input control scheme.
@@ -786,5 +990,27 @@ public partial class @MainSystem_actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnMove(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "CameraMove" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="CameraMoveActions.AddCallbacks(ICameraMoveActions)" />
+    /// <seealso cref="CameraMoveActions.RemoveCallbacks(ICameraMoveActions)" />
+    public interface ICameraMoveActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "Look" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnLook(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Zoom" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnZoom(InputAction.CallbackContext context);
     }
 }

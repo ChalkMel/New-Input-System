@@ -14,22 +14,20 @@ public class InputListener : MonoBehaviour
         _inputSystemActions = new MainSystem_actions();
         changeMapBut.onClick.AddListener(ChangeMap);
         playerInput = GetComponent<PlayerInput>();
-        Debug.Log(playerInput.currentActionMap);
     }
 
     private void ChangeMap()
     {
         if (_inputSystemActions.Main.enabled == true)
-                {
+         {
             _inputSystemActions.Main.Disable();
             _inputSystemActions.Sub.Enable(); 
-                }
+        }
         else
         {
             _inputSystemActions.Main.Enable();
             _inputSystemActions.Sub.Disable();
         }
-            Debug.Log(_inputSystemActions.Sub.Get());
     } 
 
     private void OnEnable()

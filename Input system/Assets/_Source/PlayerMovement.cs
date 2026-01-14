@@ -35,12 +35,20 @@ public class PlayerMovement : MonoBehaviour
     }
     public void Move(Vector2 movement)
     {
-        Debug.Log(movement);
-        Vector3 direction = new Vector3 (movement.x, 0, movement.y);
-        Debug.Log(direction);
+        Vector3 direction = new Vector3(movement.x, 0, movement.y);
+
+        direction = transform.TransformDirection(direction);
+        direction.y = 0;
+        direction = direction.normalized;
+
         Vector3 velocity = direction * speed;
         velocity.y = _rb.linearVelocity.y;
         _rb.linearVelocity = velocity;
+
+        //Vector3 direction = new Vector3 (movement.x, 0, movement.y);
+        //Vector3 velocity = direction * speed;
+        //velocity.y = _rb.linearVelocity.y;
+        //_rb.linearVelocity = velocity;
     }
 
     public void Jump()
