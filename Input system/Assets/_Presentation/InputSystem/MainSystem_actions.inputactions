@@ -38,6 +38,17 @@
                     "isPartOfComposite": false
                 },
                 {
+                    "name": "",
+                    "id": "31d9858c-09b9-4773-aac6-bb37134d2fef",
+                    "path": "<Joystick>/trigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";JoyStick",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
                     "name": "2D Vector",
                     "id": "b5f887d7-74ba-4533-a392-069fd1c749c8",
                     "path": "2DVector",
@@ -91,47 +102,10 @@
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
-                }
-            ]
-        },
-        {
-            "name": "Sub",
-            "id": "952db570-1b68-4abc-bcad-de64e54624cb",
-            "actions": [
-                {
-                    "name": "Jump",
-                    "type": "Button",
-                    "id": "d053738a-0fc2-48a3-bd08-4e00aff1e72c",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Move",
-                    "type": "Value",
-                    "id": "ad584fd8-d5e9-4ad2-8fda-76e3dff3c991",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                }
-            ],
-            "bindings": [
-                {
-                    "name": "",
-                    "id": "90b631da-614a-4a58-a8a7-a1011dbea136",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Mouse&Keyboard",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
                 },
                 {
                     "name": "2D Vector",
-                    "id": "46049cbd-099c-4d48-a53d-4122da75ae4f",
+                    "id": "9757f08f-3109-43bc-941e-a19eceff559e",
                     "path": "2DVector",
                     "interactions": "",
                     "processors": "",
@@ -142,44 +116,202 @@
                 },
                 {
                     "name": "up",
-                    "id": "559f5257-6f91-43a4-bc1e-34b43f34f7a5",
-                    "path": "<Keyboard>/d",
+                    "id": "8420a690-5fe1-4ae4-afd4-58aaf07696a0",
+                    "path": "<Joystick>/stick/up",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";JoyStick",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "down",
-                    "id": "d28158ed-4ca2-4494-83c4-b5e5a8c237d6",
-                    "path": "<Keyboard>/a",
+                    "id": "a32be2c8-638d-46cb-a09f-e1f2feeb7a15",
+                    "path": "<Joystick>/stick/down",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";JoyStick",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "left",
-                    "id": "96a86b61-aceb-4e2e-a3c6-bd16223bc29f",
-                    "path": "<Keyboard>/w",
+                    "id": "a81a3d45-5a6c-41d5-a279-8ae6a9146e3e",
+                    "path": "<Joystick>/stick/left",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";JoyStick",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "right",
-                    "id": "d0851dae-ab5a-44d1-a58a-8bddfc1633b2",
-                    "path": "<Keyboard>/s",
+                    "id": "31227a6f-6b97-4288-b9ca-32319b4e755e",
+                    "path": "<Joystick>/stick/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";JoyStick",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                }
+            ]
+        },
+        {
+            "name": "Sub",
+            "id": "11cc2b97-dd69-4b10-856f-4d01966bcde8",
+            "actions": [
+                {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "72f99777-900a-440f-82b6-0e13889e2a19",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Move",
+                    "type": "Value",
+                    "id": "65962b03-bb65-478e-881b-2dd9e81b71cf",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "da2a2667-7dd5-4685-9892-e89b7906827c",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Mouse&Keyboard",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e894edaa-5a87-4fda-923d-cfb6de717fa3",
+                    "path": "<Joystick>/trigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";JoyStick",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "2D Vector",
+                    "id": "ac096c7d-013a-45a4-ab18-efad882e7090",
+                    "path": "2DVector",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
+                    "action": "Move",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "9dd294b9-67d6-4105-820a-418636823160",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Mouse&Keyboard",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "f141c959-3144-43f2-9d0e-a7ccc17f1a02",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Mouse&Keyboard",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "09008a1a-e5f6-4865-bf6c-ebc60ca9c92c",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Mouse&Keyboard",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "4ca2de44-b4a0-4f74-95f9-7889d019ac1e",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Mouse&Keyboard",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "2D Vector",
+                    "id": "2167eecc-da1b-426d-8229-f456bf957d48",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "03d4fdb4-5af5-41a2-9ce3-fcf9b714dd72",
+                    "path": "<Joystick>/stick/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";JoyStick",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "66ee6218-1f67-4c41-bfca-3b0eb0894da0",
+                    "path": "<Joystick>/stick/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";JoyStick",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "986cb1ba-2d4e-4dd7-8d33-72aec6dd5fd9",
+                    "path": "<Joystick>/stick/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";JoyStick",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "6acf8b73-6f96-4f51-b91d-1b4463e17738",
+                    "path": "<Joystick>/stick/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";JoyStick",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -191,6 +323,11 @@
         {
             "name": "Mouse&Keyboard",
             "bindingGroup": "Mouse&Keyboard",
+            "devices": []
+        },
+        {
+            "name": "JoyStick",
+            "bindingGroup": "JoyStick",
             "devices": []
         }
     ]

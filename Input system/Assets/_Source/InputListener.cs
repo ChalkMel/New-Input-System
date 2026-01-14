@@ -8,18 +8,28 @@ public class InputListener : MonoBehaviour
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private Button changeMapBut;
     private MainSystem_actions _inputSystemActions;
-
+    private PlayerInput playerInput;
     private void Awake()
     {
         _inputSystemActions = new MainSystem_actions();
         changeMapBut.onClick.AddListener(ChangeMap);
-        _inputSystemActions.Sub.Disable();
+        playerInput = GetComponent<PlayerInput>();
+        Debug.Log(playerInput.currentActionMap);
     }
 
     private void ChangeMap()
     {
-        _inputSystemActions.Main.Disable();
-        _inputSystemActions.Sub.Enable();
+        if (_inputSystemActions.Main.enabled == true)
+                {
+            _inputSystemActions.Main.Disable();
+            _inputSystemActions.Sub.Enable(); 
+                }
+        else
+        {
+            _inputSystemActions.Main.Enable();
+            _inputSystemActions.Sub.Disable();
+        }
+            Debug.Log(_inputSystemActions.Sub.Get());
     } 
 
     private void OnEnable()
@@ -30,8 +40,7 @@ public class InputListener : MonoBehaviour
 
     private void Bind()
     {
-        _inputSystemActions.Main.Jump.performed += OnJump;
-        _inputSystemActions.Sub.Jump.performed += OnJump;
+        _inputSystemActions.FindAction("Jump").performed += OnJump;
     }
 
     private void FixedUpdate()
@@ -41,8 +50,7 @@ public class InputListener : MonoBehaviour
 
     private void Move()
     {
-        Vector2 direction = _inputSystemActions.Main.Move.ReadValue<Vector2>();
-        direction = _inputSystemActions.Sub.Move.ReadValue<Vector2>();
+        Vector2 direction = _inputSystemActions.FindAction("Move").ReadValue<Vector2>();
         playerMovement.Move(direction);
     }
 
@@ -53,8 +61,7 @@ public class InputListener : MonoBehaviour
 
     private void Expose()
     {
-        _inputSystemActions.Main.Jump.performed -= OnJump;
-        _inputSystemActions.Sub.Jump.performed -= OnJump;
+        _inputSystemActions.FindAction("Jump").performed -= OnJump;
     }
 
     private void OnDisable()
