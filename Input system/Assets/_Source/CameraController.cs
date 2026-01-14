@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class CameraCotroller : MonoBehaviour
+public class CameraController : MonoBehaviour
 {
     [SerializeField] private float rotateSpeed;
     [SerializeField] private float zoomSpeed;

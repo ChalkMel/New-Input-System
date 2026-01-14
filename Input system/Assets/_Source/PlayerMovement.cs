@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     {
         CheckGround();
     }
+
     private void CheckGround()
     {
         _isGrounded = Physics.CheckSphere(
@@ -33,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
     {
             Gizmos.DrawSphere(groundCheck.position, groundCheckRadius);
     }
+
     public void Move(Vector2 movement)
     {
         Vector3 direction = new Vector3(movement.x, 0, movement.y);
