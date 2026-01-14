@@ -8,12 +8,14 @@ public class InputListener : MonoBehaviour
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private Button changeMapBut;
     private MainSystem_actions _inputSystemActions;
-    private PlayerInput playerInput;
+    private InputAction inputActionMove;
+    private InputAction inputActionJump;
     private void Awake()
     {
         _inputSystemActions = new MainSystem_actions();
         changeMapBut.onClick.AddListener(ChangeMap);
-        playerInput = GetComponent<PlayerInput>();
+        inputActionMove = _inputSystemActions.FindAction("Move");
+        inputActionJump = _inputSystemActions.FindAction("Jump");
     }
 
     private void ChangeMap()
@@ -28,6 +30,7 @@ public class InputListener : MonoBehaviour
             _inputSystemActions.Main.Enable();
             _inputSystemActions.Sub.Disable();
         }
+        inputActionMove = _inputSystemActions.FindAction("Move");
     } 
 
     private void OnEnable()
@@ -38,7 +41,7 @@ public class InputListener : MonoBehaviour
 
     private void Bind()
     {
-        _inputSystemActions.FindAction("Jump").performed += OnJump;
+        inputActionJump.performed += OnJump;
     }
 
     private void FixedUpdate()
@@ -48,8 +51,8 @@ public class InputListener : MonoBehaviour
 
     private void Move()
     {
-        Vector2 direction = _inputSystemActions.FindAction("Move").ReadValue<Vector2>();
-        playerMovement.Move(direction);
+        Vector2 direction = inputActionMove.ReadValue<Vector2>();
+        playerMovement.Move(direction); 
     }
 
     private void OnJump(InputAction.CallbackContext obj)
@@ -59,7 +62,7 @@ public class InputListener : MonoBehaviour
 
     private void Expose()
     {
-        _inputSystemActions.FindAction("Jump").performed -= OnJump;
+        inputActionJump.performed -= OnJump;
     }
 
     private void OnDisable()

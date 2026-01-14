@@ -41,7 +41,7 @@ public class CameraController : MonoBehaviour
 
     private void RotateCamera()
     {
-        Vector2 lookInput = _inputSystemActions.FindAction("Look").ReadValue<Vector2>();
+        Vector2 lookInput = _inputSystemActions.CameraMove.Look.ReadValue<Vector2>();
 
         _rotationX += lookInput.x * rotateSpeed * Time.deltaTime;
         _rotationY -= lookInput.y * rotateSpeed * Time.deltaTime;
@@ -54,7 +54,7 @@ public class CameraController : MonoBehaviour
 
     private void ZoomCamera()
     {
-        float zoomInput = _inputSystemActions.FindAction("Zoom").ReadValue<float>();
+        float zoomInput = _inputSystemActions.CameraMove.Zoom.ReadValue<float>();
         float newFOV = _camera.fieldOfView + zoomInput * zoomSpeed;
         newFOV = Mathf.Clamp(newFOV, minZoom, maxZoom);
         _camera.fieldOfView = newFOV;
